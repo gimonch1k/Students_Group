@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router";
 
 import Layout from "./components/Layout";
+
+import studentsData from "./components/students-list/students-list";
 
 import AboutPage from "./pages/AboutPage/AboutPage";
 import AddItemPage from "./pages/AddItemPage/AddItemPage";
@@ -10,13 +13,19 @@ import ItemsPage from "./pages/ItemsPage/ItemsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
+  const [students, setStudents] = useState(studentsData);
+
+  const addStudent = (newStudent) => {
+    setStudents((item) => [...item, newStudent]);
+  };
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="items" element={<ItemsPage />} />
+        <Route path="items" element={<ItemsPage data={students} />} />
         <Route path="items/:id" element={<ItemDetailsPage />} />
-        <Route path="add" element={<AddItemPage />} />
+        <Route path="add" element={<AddItemPage addStudent={addStudent} />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
