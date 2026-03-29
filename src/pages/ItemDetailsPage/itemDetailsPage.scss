@@ -1,0 +1,38 @@
+.itemdetailspage {
+  padding: 130px 0 40px 0;
+  &__wrapper {
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    background-color: rgba(0, 0, 0, 0.274);
+  }
+  &__img {
+    max-width: fit-content;
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 450px;
+      height: 669px;
+      object-fit: cover;
+    }
+  }
+  &__name {
+    text-align: right;
+    font-size: 25px;
+    font-weight: 700;
+  }
+  &__age,
+  &__group {
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: right;
+  }
+  &__divider {
+    margin: 0 auto;
+    width: 100%;
+    height: 2px;
+    background-color: aqua;
+  }
+}
