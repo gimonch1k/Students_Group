@@ -22,6 +22,19 @@ function AddItemPage({ addStudent }) {
     });
   };
 
+  const inputChangeAge = (e) => {
+    const { name, value } = e.target;
+
+    const newValue = value.replace(/\D/, "");
+
+    setFormData((item) => {
+      return {
+        ...item,
+        [name]: newValue,
+      };
+    });
+  };
+
   const onSubmitInputsChange = (e) => {
     e.preventDefault();
 
@@ -64,7 +77,7 @@ function AddItemPage({ addStudent }) {
               placeholder="Ваш вік"
               className="additempage__input"
               value={formData.age}
-              onChange={inputChange}
+              onChange={inputChangeAge}
             />
             <input
               type="text"

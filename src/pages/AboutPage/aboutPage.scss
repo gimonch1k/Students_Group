@@ -1,0 +1,23 @@
+.aboutpage {
+  padding: 130px 0 40px 0;
+  &__title {
+    text-align: center;
+    font-size: 30px;
+  }
+  &__poss {
+    margin-top: 40px;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.163);
+    border-radius: 7px;
+    padding: 20px;
+  }
+  &__head {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  &__descr {
+    line-height: 30px;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+}
