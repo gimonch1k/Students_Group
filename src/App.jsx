@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Routes, Route } from "react-router";
 
 import Layout from "./components/Layout";
@@ -13,12 +13,37 @@ import ItemsPage from "./pages/ItemsPage/ItemsPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ClassItemsPage from "./pages/ClassItemsPage/ClassItemsPage";
 
+/**
+ * @typedef {Object} Student
+ * @property {number} id
+ * @property {string} name
+ * @property {number} age
+ * @property {string} group
+ * @property {string} photo
+ */
+
 function App() {
+  /** @type {[Student[], Function]} */
   const [students, setStudents] = useState(studentsData);
 
-  const addStudent = (newStudent) => {
+  /** @param {Student} newStudent */
+  const addStudent = useCallback((newStudent) => {
     setStudents((item) => [...item, newStudent]);
-  };
+  }, []);
+
+  /** @param {number} id */
+  const deleteStudent = useCallback((id) => {
+    setStudents((students) => students.filter((item) => item.id !== id));
+  }, []);
+
+  /** @param {Student} updatedStudent */
+  const editStudent = useCallback((updatedStudent) => {
+    setStudents((students) =>
+      students.map((item) =>
+        item.id === updatedStudent.id ? updatedStudent : item,
+      ),
+    );
+  }, []);
 
   return (
     <Routes>
@@ -29,7 +54,16 @@ function App() {
           path="class/items"
           element={<ClassItemsPage data={students} />}
         />
-        <Route path="items/:id" element={<ItemDetailsPage data={students} />} />
+        <Route
+          path="items/:id"
+          element={
+            <ItemDetailsPage
+              data={students}
+              deleteStudent={deleteStudent}
+              editStudent={editStudent}
+            />
+          }
+        />
         <Route path="add" element={<AddItemPage addStudent={addStudent} />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFoundPage />} />

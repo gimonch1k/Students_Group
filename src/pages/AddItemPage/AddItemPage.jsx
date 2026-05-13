@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import question from "../../assets/question.png";
 
@@ -94,5 +95,9 @@ function AddItemPage({ addStudent }) {
     </section>
   );
 }
+
+AddItemPage.propTypes = {
+  addStudent: PropTypes.func.isRequired,
+};
 
 export default AddItemPage;

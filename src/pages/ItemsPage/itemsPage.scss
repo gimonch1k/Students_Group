@@ -41,4 +41,13 @@
   &__link {
     text-decoration: none;
   }
+  &__input {
+    display: block;
+    width: 400px;
+    margin: 30px auto 0 auto;
+    padding: 8px;
+    background-color: #ff4e4e72;
+    color: antiquewhite;
+    border: none;
+  }
 }
